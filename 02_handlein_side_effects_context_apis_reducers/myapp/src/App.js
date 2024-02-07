@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
@@ -7,12 +7,31 @@ import MainHeader from './components/MainHeader/MainHeader';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const userLoggedInInformation = localStorage.getItem('isLoggedin');
+
+ /*
+  Only this implementation works to get the login information but it cause an infinite loop,
+ because under the if condition the state variable changed so the component again render again and again.
+ 
+ */
+  if(userLoggedInInformation=== '1'){
+    console.log("Hello")
+    setIsLoggedIn(true);
+  }
+
   const loginHandler = (email, password) => {
+    
     // We should of course check email and password
     // But it's just a dummy/ demo anyways
     setIsLoggedIn(true);
+    localStorage.setItem('isLoggedin','1');
   };
 
+  // For the current situation every time refresh the application the application start from fresh not gettong the loggedin state.
+
+  // But to maintain the state we can store the state of the application in local storage.
+
+  
   
 
   const logoutHandler = () => {
