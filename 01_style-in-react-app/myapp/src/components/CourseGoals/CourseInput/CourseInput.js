@@ -23,6 +23,7 @@ const CourseInput = (props) => {
       return;
     }
     props.onAddGoal(enteredValue);
+    setEnteredValue('');
     setIsValid(true);
   };
 
@@ -32,7 +33,7 @@ const CourseInput = (props) => {
       {/* Classes which are form-control this type is have to write in this way. because in JS form-control is not a valid variable name.*/}
       <div className={`${styles['form-control']} ${!isValid && styles.invalid}`}>
         <label>Course Goal</label>
-        <input type="text" onChange={goalInputChangeHandler} />
+        <input type="text" value={enteredValue} onChange={goalInputChangeHandler} />
       </div>
       <Button type="submit">Add Goal</Button>
     </form>
