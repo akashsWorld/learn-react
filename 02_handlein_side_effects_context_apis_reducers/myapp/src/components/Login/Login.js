@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -11,20 +11,32 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+
+  useEffect(()=>{
+    // This anounymous function only executes if the enteredEmail and enteredPassword is change.
+    const timeOutIndetiti = setTimeout(()=>{
+
+      setFormIsValid(enteredEmail.includes('@') && enteredPassword.trim().length > 6)
+    },500);
+
+    return ()=>{
+      // This is a cleanup function, it executes each time before useEffect anonymous function execute except for the first time rendering of the component.
+      
+      clearTimeout(timeOutIndetiti);// It clear the previously rendered timeOutIndetifier not the current.
+      
+      
+      // For this in the setTimeOut finction not changeing the request because it clear the setTimeOut so for each letter the validity not checked.
+      
+      
+    }
+  },[enteredEmail,enteredPassword]);
+
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
-
-    setFormIsValid(
-      event.target.value.includes('@') && enteredPassword.trim().length > 6
-    );
   };
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
-
-    setFormIsValid(
-      event.target.value.trim().length > 6 && enteredEmail.includes('@')
-    );
   };
 
   const validateEmailHandler = () => {
