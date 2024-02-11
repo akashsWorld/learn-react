@@ -13,7 +13,7 @@ import Button from "../UI/Button/Button";
 */
 
 
-  // Here the state is passed by the react which is  and 
+  // Here the state is passed by the react which is always the correct state.
 
 const emailReducerFunc = (state, action) => {
   switch (action.type) {
