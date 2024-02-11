@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, useContext } from "react";
 
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
 import Button from "../UI/Button/Button";
+import AuthContext from "../../auth-context";
 
 /* This reducer fucntion can define outside of the jsx component,
   because it doesnt have any value which are getting or generated in the jsx component.
@@ -37,7 +38,7 @@ const passwordReducerFunc = (state, action) => {
   }
 };
 
-const Login = (props) => {
+const Login = () => {
   // const [enteredEmail, setEnteredEmail] = useState('');
   // const [emailIsValid, setEmailIsValid] = useState();
 
@@ -45,6 +46,8 @@ const Login = (props) => {
   // const [passwordIsValid, setPasswordIsValid] = useState();
 
   const [formIsValid, setFormIsValid] = useState(false);
+  
+  const authCtx = useContext(AuthContext);
 
   const [emailState, dispatchEmailState] = useReducer(emailReducerFunc, {
     value: "",
@@ -91,7 +94,7 @@ const Login = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onLogin(emailState.value, passwordState.value);
+    authCtx.onLogin(emailState.value, passwordState.value);
   };
 
   return (
