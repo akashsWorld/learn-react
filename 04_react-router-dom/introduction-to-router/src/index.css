@@ -25,3 +25,13 @@
     padding: 1rem;
     background: #e4dc52d5;
 }
+.nav-links{
+    text-decoration: none;
+}
+.nav-links:hover{
+    color: white;
+    text-decoration: underline;
+}
+.nav-links__active{
+    color: gray;
+}
