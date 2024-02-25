@@ -20,15 +20,19 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage/>,
     children: [
       {
-        path: "/",
+        // If the path not starts with / then it will append with the parent path.
+        // So now "" this becomes /
+        index:true, //This index=true is same as <path:''> implies this is the default route for current element.
         element: <HomePage />,
       },
       {
-        path: "/products",
+        // "products" This becomes "/products". Because it appends with the parent url.
+        // This called Realtive path.
+        path: "products",
         element: <ProductsPage />,
       },
       {
-        path:'/products/:productId',
+        path:'products/:productId',
         element: <ProductDetails/>
       }
     ]

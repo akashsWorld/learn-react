@@ -44,3 +44,7 @@
     list-style: none;
     margin: 4px;
 }
+.product-details button{
+    display: block;
+    margin: 10px;
+}
