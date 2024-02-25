@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom'
 const ProductsPage = () => {
   return (
     <div>
-      Products
-      <br/>
-      <div style={{'height':'1rem'}}></div>
-      <Link to='/' className='home-link'>Go to home</Link>
+      <h1>This is Products page</h1>
+      <Link to='/' className='decoration-none'>Go to home</Link>
     </div>
   )
 }
