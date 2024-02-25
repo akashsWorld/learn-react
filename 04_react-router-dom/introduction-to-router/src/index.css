@@ -1,0 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.home-link{
+    text-decoration: none;
+    cursor: pointer;
+    color: aqua;
+    background: #000;
+}
