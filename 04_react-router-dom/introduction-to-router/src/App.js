@@ -7,6 +7,7 @@ import HomePage from "./components/HomePage";
 import ProductsPage from "./components/ProductsPage";
 import RootPage from "./pages/RootPage";
 import ErrorPage from "./components/ErrorPage";
+import ProductDetails from "./components/ProductDetails";
 
 
 // To is how to disign the layouts of the pages and using router change a particular component of a page. 
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         path: "/products",
         element: <ProductsPage />,
       },
+      {
+        path:'/products/:productId',
+        element: <ProductDetails/>
+      }
     ]
   },
 ]);

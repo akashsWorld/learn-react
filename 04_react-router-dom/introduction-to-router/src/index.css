@@ -30,8 +30,17 @@
 }
 .nav-links:hover{
     color: white;
-    text-decoration: underline;
 }
 .nav-links__active{
     color: gray;
+    text-decoration: underline;
+}
+.products-page a{
+    text-decoration: none;
+    color: black;
+}
+
+.products-page li{
+    list-style: none;
+    margin: 4px;
 }
