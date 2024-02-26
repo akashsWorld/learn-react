@@ -24,7 +24,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import EventsList from "./components/EventsList";
 import EventsPage from "./pages/EventsPage";
-import EventItem,{loader as eventItemLoader} from './components/EventItem';
+import EventItem, { loader as eventItemLoader } from "./components/EventItem";
+import ErrorComponent from "./components/ErrorComponent";
+import EventForm, {action as formSubmitAction} from "./components/EventForm";
+
 
 const router = createBrowserRouter([
   {
@@ -33,22 +36,38 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element:<h1>Welcome to Events page.</h1>
+        element: <h1>Welcome to Events page.</h1>,
       },
       {
         path: "events",
         element: <EventsPage />,
-        children:[
+        errorElement: <ErrorComponent />,
+        children: [
           {
-            index:true,
-            element: <EventsList/>,
+            index: true,
+            element: <EventsList />,
           },
           {
-            path:':eventID',
-            element:<EventItem/>,
-            loader:eventItemLoader
+            id: "event-details",
+            loader: eventItemLoader,
+            children: [
+              {
+                path: ":eventID",
+                element: <EventItem />,
+              },
+              {
+                path: "edit/:eventID",
+                element: <EventForm />,
+                action: formSubmitAction,
+              },
+            ],
+          },
+          {
+            path:'new',
+            element:<EventForm/>,
+            action: formSubmitAction
           }
-        ]
+        ],
       },
     ],
   },

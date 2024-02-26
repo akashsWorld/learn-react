@@ -1,12 +1,15 @@
 import classes from './EventItem.module.css';
-import {useLoaderData} from 'react-router-dom'
+import {useRouteLoaderData, json, Link} from 'react-router-dom'
 
 function EventItem() {
   function startDeleteHandler() {
     // ...
   }
-  const data = useLoaderData();
+  const data = useRouteLoaderData('event-details');
+  
   const event = data.event;
+
+
 
   return (
     <article className={classes.event}>
@@ -15,7 +18,7 @@ function EventItem() {
       <time>{event.date}</time>
       <p>{event.description}</p>
       <menu className={classes.actions}>
-        <a href="edit">Edit</a>
+        <Link to={'../edit/'+event.id} >Edit</Link>
         <button onClick={startDeleteHandler}>Delete</button>
       </menu>
     </article>
@@ -26,5 +29,15 @@ export default EventItem;
 
 export const loader = async ({request, params})=>{
   const eventId  = params.eventID;
-  return fetch(`http://localhost:8080/events/${eventId}`);
+  const respons = await fetch(`http://localhost:8080/events/${eventId}`);
+
+  if(!respons.ok){
+    throw json({
+      message:'Akash'
+    },{
+      status:500
+    })
+  }
+
+  return respons;
 }
